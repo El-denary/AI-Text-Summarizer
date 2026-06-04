@@ -151,7 +151,7 @@ Opens at `http://localhost:8501`. Paste any text, adjust the extractive length s
 ## 💡 Design Decisions
 
 **Why TF-IDF over pure frequency counting for extractive?**
-Raw word frequency favors common words that survive stopword removal (e.g., "said", "year"). TF-IDF down-weights words that appear in many sentences and up-weights words unique to a few — which are usually the most topically informative.
+Raw word frequency favors common words that survive stopword removal (e.g., "said", "year"). TF-IDF down-weights words that appear in many sentences and up-weights words unique to a few, which are usually the most topically informative.
 
 **Why restore original sentence order in extractive output?**
 Ranking selects the best sentences, but returning them in ranked order breaks logical flow. Sorting selected indices by their original position produces a summary that reads like a coherent paragraph.
@@ -162,8 +162,4 @@ BART is ~1.6 GB. Loading it on every Streamlit rerun would take 10–20 seconds 
 **Why truncate to 900 words instead of 1024 tokens?**
 BART's hard limit is 1024 *tokens*, not words. Tokenization expands words via subword splitting, so 1024 words can easily exceed 1024 tokens. 900 words is a safe proxy that avoids truncation errors without losing meaningful content.
 
----
 
-## License
-
-MIT License — free to use, modify, and distribute.
